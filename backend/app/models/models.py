@@ -23,6 +23,8 @@ class Vendor(Base):
     name: Mapped[str] = mapped_column(String(64))
     stall_width_m: Mapped[float] = mapped_column(Float)
     priority: Mapped[int] = mapped_column(Integer, default=1)
+    # active = 有效可参与分配; merged = 已合并退出; withdrawn = 已撤出
+    status: Mapped[str] = mapped_column(String(16), default="active")
 
 class Pillar(Base):
     __tablename__ = "pillars"

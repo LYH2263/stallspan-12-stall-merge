@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 from app.config import settings
@@ -17,3 +17,11 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+def ensure_schema_upgrades():
+    """Idempotent column additions for databases created before a column existed."""
+    with engine.begin() as conn:
+        cols = {c["name"] for c in inspect(conn).get_columns("vendors")}
+        if "status" not in cols:
+            conn.execute(text("ALTER TABLE vendors ADD COLUMN status VARCHAR(16) NOT NULL DEFAULT 'active'"))

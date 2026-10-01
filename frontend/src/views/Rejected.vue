@@ -3,7 +3,8 @@ import { onMounted, ref } from 'vue'
 import { api } from '../api'
 const rows = ref<any[]>([])
 onMounted(async () => {
-  const data = await api('/allocate/latest?segment_id=1')
+  // 现算当前有效摊主，与列表、主图同一份现算口径，已合并退出的不再点名
+  const data = await api('/allocate/preview?segment_id=1', { method: 'POST' })
   rows.value = data.rejected || []
 })
 </script>
