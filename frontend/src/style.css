@@ -146,3 +146,12 @@ th { color: var(--ss-muted); font-weight: 700; font-size: 0.78rem; }
 
 .stall-strip { display: flex; height: 56px; border: 2px solid var(--ss-curb); overflow: hidden; margin: 0.75rem 0; background: #3a3126; }
 .stall-cell { display: flex; align-items: center; justify-content: center; font-size: 0.7rem; border-right: 1px solid rgba(255,255,255,0.08); overflow: hidden; white-space: nowrap; }
+
+.ss-select {
+  background: var(--ss-paper); color: var(--ss-ink);
+  border: 2px solid var(--ss-curb); border-radius: 3px;
+  padding: 0.4rem 0.6rem; font-size: 0.85rem; font-family: inherit;
+}
+.ss-flash-ok { color: var(--ss-ok); font-size: 0.82rem; font-weight: 700; margin: 0.5rem 0 0; }
+.ss-flash-bad { color: var(--ss-bad); font-size: 0.82rem; font-weight: 700; margin: 0.5rem 0 0; }
+.ss-vendor-chip.ss-chip-out { opacity: 0.45; border-style: dashed; box-shadow: none; }

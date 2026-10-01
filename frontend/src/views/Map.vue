@@ -5,7 +5,8 @@ const data = ref<any>(null)
 const vendors = ref<any[]>([])
 async function run() { data.value = await api('/allocate/run?segment_id=1', { method: 'POST' }) }
 onMounted(async () => {
-  vendors.value = await api('/vendors')
+  // 排队条只列仍有效的摊:已合并退出/已撤出的不再单独点名
+  vendors.value = (await api('/vendors')).filter((v: any) => v.status === 'active')
   await run()
 })
 const colors = ['#e8a87c','#85dcb8','#e27d60','#c38d9e','#41b3a3','#f4a261','#e76f51']

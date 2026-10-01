@@ -23,6 +23,10 @@ class Vendor(Base):
     name: Mapped[str] = mapped_column(String(64))
     stall_width_m: Mapped[float] = mapped_column(Float)
     priority: Mapped[int] = mapped_column(Integer, default=1)
+    # active=有效 / merged=已合并退出 / withdrawn=已撤出;只有 active 参与开间分配
+    status: Mapped[str] = mapped_column(String(16), default="active")
+    # 合并占位摊记录来源两摊快照([{id,name,stall_width_m,priority}, ...]),普通摊为 "[]"
+    merged_from_json: Mapped[str] = mapped_column(Text, default="[]")
 
 class Pillar(Base):
     __tablename__ = "pillars"
